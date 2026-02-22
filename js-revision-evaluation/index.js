@@ -27,7 +27,7 @@ function createBankAccount() {
     }
     getTransactionHistroy(){
         console.log("Transaction Histroy",perviousTransactions);
-        
+
     }
   };
 }
@@ -36,3 +36,29 @@ myAccount.deposit(1000);
 myAccount.withdraw(500);
 myAccount.getBalance();
 myAccount.getTransactionHistroy();
+
+
+//Q2
+function RateLimiterFunc(limit,interval){
+    let count =0;
+    let lastRead =0;
+    return function limiter(){
+        const now = Date.now();
+        if(now- lastRead>interval){
+            count =0;
+            lastRead=now;
+        }
+        if(count<limit){
+            count++;
+            return "Allowed";
+        
+        }else{
+            return"Blocked :Rate limit exceeded";
+        }
+    }
+}
+const limiter = RateLimiterFunc(3,3000);
+console.log(limiter());
+console.log(limiter());
+console.log(limiter());
+console.log(limiter());
