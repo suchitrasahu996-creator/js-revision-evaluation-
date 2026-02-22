@@ -62,3 +62,27 @@ console.log(limiter());
 console.log(limiter());
 console.log(limiter());
 console.log(limiter());
+ 
+
+//Q3 
+let intervalCounter= 0;
+let intervalRecord={};
+
+function mySetInterval(callback,delay){
+    intervalCounter++;
+    let id =intervalCounter;
+    function run(){
+        intervalRecord[id]=setTimeout(()=>{
+            callback();
+            run();
+        },delay);
+
+
+    }
+    run();
+    return id;
+
+}
+function myClearInterval(id){
+    
+}
